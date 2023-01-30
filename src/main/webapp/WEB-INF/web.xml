@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<!-- security(서버 단 인증 요구) 관련 -->
+	<security-role>
+		<!-- 역할 이름 지정 -->
+		<role-name>guest</role-name>
+	</security-role>
+	<security-constraint>
+		<display-name>WebMarket Security</display-name>
+		<web-resource-collection>
+			<web-resource-name>WebMarket</web-resource-name>
+			<description></description>
+			<!-- 인증이 필요한 페이지 (인증이 성공되면 해당 페이지가 로딩됨) -->
+			<url-pattern>/addBook.jsp</url-pattern>
+			<url-pattern>/editBook.jsp</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<description>게스트명</description>
+			<role-name>guest</role-name>
+		</auth-constraint>
+	</security-constraint>
+	<login-config>
+		<!-- 
+		<auth-method>BASIC</auth-method>
+		 -->
+		 <!--  form 인증 처리 기법으로 설정 -->
+		<auth-method>FORM</auth-method>
+		<form-login-config>
+			<form-login-page>/login.jsp</form-login-page>
+			<form-error-page>/login_failed.jsp</form-error-page>
+		</form-login-config>
+	</login-config>
+</web-app>
